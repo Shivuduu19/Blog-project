@@ -20,22 +20,33 @@ export class AuthService {
                 password,
                 name
             );
+            console.log(userAccount);
             if (userAccount) {
+                console.log(userAccount);
                 //login
-                return this.login(email, password);
+                return this.login({ email, password });
             } else {
                 return userAccount;
             }
         } catch (error) {
-            throw Error;
+            console.log("logout::Error", error);
         }
     }
 
     async login({ email, password }) {
-        {
-            const result = await this.account.createEmailSession(email, password);
+        try {
+            console.log(email, password);
+            console.log(this.account);
+            const result = await this.account.createEmailPasswordSession(email, password);
             return result;
+        } catch (error) {
+            console.log(error.message);
         }
+        // {
+        //     console.log(email, password);
+        //     const result = await this.account.createEmailSession(email, password);
+        //     return result;
+        // }
     }
     async getCurrentUser() {
         try {
