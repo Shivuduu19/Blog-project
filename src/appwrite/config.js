@@ -14,9 +14,9 @@ export class Service {
     this.bucket = new Storage(this.client);
   }
 
-  async createPost({ title, slug, content, featuredImage, status, userId }) {
+  async createPost({ title, slug, content, featuredImage, status, userId, name, userEmail }) {
     try {
-      console.log(featuredImage);
+      // console.log(featuredImage);
       return await this.databases.createDocument(
         conf.appwriteDataBaseId,
         conf.appwriteCollectionId,
@@ -27,6 +27,8 @@ export class Service {
           featuredImage,
           status,
           userId,
+          name,
+          userEmail
         }
       );
     } catch (error) {
@@ -75,7 +77,7 @@ export class Service {
     }
   }
 
-  async getPosts(queries = [Query.equal("status", "active")]) {
+  async getPosts(queries = [Query.equal("status", ["active"])]) {
     try {
       return await this.databases.listDocuments(
         conf.appwriteDataBaseId,

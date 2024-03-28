@@ -9,11 +9,6 @@ function Header() {
 
   const navItems = [
     {
-      name: "Home",
-      slug: "/",
-      active: true,
-    },
-    {
       name: "Login",
       slug: "/login",
       active: !authStatus,
@@ -24,20 +19,15 @@ function Header() {
       active: !authStatus,
     },
     {
-      name: "All Posts",
-      slug: "/all-posts",
-      active: authStatus,
-    },
-    {
       name: "Add Post",
       slug: "/add-post",
       active: authStatus,
     },
   ];
   return (
-    <header className="py-3 shadow bg-gray-500">
+    <header className="py-3 shadow bg-gray-900 h-[8rem]">
       <Container>
-        <nav className="flex">
+        <nav className="flex justify-between w-full">
           <div className="mr-4">
             <Link to="/">
               <Logo width="70px" />

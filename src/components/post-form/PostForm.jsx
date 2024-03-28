@@ -20,6 +20,7 @@ const PostForm = ({ post }) => {
     });
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
+  console.log(userData);
 
   const submit = async (data) => {
     if (post) {
@@ -48,7 +49,10 @@ const PostForm = ({ post }) => {
         const dbPost = await service.createPost({
           ...data,
           userId: userData.$id,
+          name: userData.name,
+          userEmail: userData.email,
         });
+        console.log(userData);
         console.log(dbPost);
 
         if (dbPost) {

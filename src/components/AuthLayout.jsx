@@ -6,6 +6,9 @@ const Protected = ({ children, authentication = true }) => {
   const navigate = useNavigate();
   const [loader, setLoader] = useState(true);
   const authStatus = useSelector((state) => state.auth.status);
+  const authData = useSelector((state) => state.auth.userData)
+  // console.log(authStatus);
+  // console.log(authData);
 
   useEffect(() => {
     if (!authentication && authStatus) {

@@ -25,13 +25,13 @@ function App() {
   }, []);
 
   return !loading ? (
-    <div className="min-h-screen flex bg-slate-500">
-      <div className="w-full block">
+    <div className=" flex min-h-screen bg-gray-700">
+      <div className=" w-full block">
         <Header />
-        <main>
+        <main className="">
           <Outlet />
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   ) : null;
