@@ -10,9 +10,9 @@ const Post = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  const userData = useSelector((state) => state.auth.userData);
+  const loginData = useSelector((state) => state.auth.userData);
 
-  const isAuthor = post && userData ? post.userId === userData.$id : false;
+  const isAuthor = post && loginData ? post.userId === loginData.$id : false;
 
   useEffect(() => {
     if (slug) {
@@ -32,33 +32,35 @@ const Post = () => {
     });
   };
   return post ? (
-    <div className="py-8">
-      <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+    <div className="py-8 flex flex-col items-center">
+
+      <div className="w-full flex justify-center items-center mb-4 relative flex-col border rounded-xl p-2">
+        <div className="px-32">
           <img
             src={service.getFilePreview(post.featuredImage)}
             alt={post.title}
-            className="rounded-xl"
+            className="rounded-xl h-[80vh]"
           />
+        </div>
 
-          {isAuthor && (
-            <div className="absolute right-6 top-6">
-              <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3">
-                  Edit
-                </Button>
-              </Link>
-              <Button bgColor="bg-red-500" onClick={deletePost}>
-                Delete
+        {isAuthor && (
+          <div className="absolute right-6 top-6">
+            <Link to={`/edit-post/${post.$id}`}>
+              <Button bgColor="bg-green-500" className="mr-3">
+                Edit
               </Button>
-            </div>
-          )}
-        </div>
-        <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
-        </div>
-        <div className="browser-css">{parse(post.content)}</div>
-      </Container>
+            </Link>
+            <Button bgColor="bg-red-500" onClick={deletePost}>
+              Delete
+            </Button>
+          </div>
+        )}
+      </div>
+      <div className=" flex items-center mb-6 flex-col gap-6 w-[1200px]">
+        <h1 className="text-3xl font-bold">{post.title}</h1>
+        <p className="text-2xl ">{parse(post.content)}</p>
+      </div>
+
     </div>
   ) : null;
 };

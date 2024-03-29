@@ -1,5 +1,5 @@
 import Input from "../Input";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,9 @@ import Button from "../Button";
 import service from "../../appwrite/config";
 
 const PostForm = ({ post }) => {
+  // const [post, setPost] = useState(null)
+
+  // useEffect(() => setPost(postValue), [post])
   const { register, handleSubmit, watch, control, getValues, setValue } =
     useForm({
       defaultValues: {
@@ -19,8 +22,8 @@ const PostForm = ({ post }) => {
       },
     });
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.auth.userData);
-  console.log(userData);
+  const loginData = useSelector((state) => state.auth.userData);
+  console.log(loginData);
 
   const submit = async (data) => {
     if (post) {
@@ -45,14 +48,14 @@ const PostForm = ({ post }) => {
       if (file) {
         const fileId = file.$id;
         data.featuredImage = fileId;
-        // console.log(data);
+        console.log(data);
+        console.log(loginData.$id, loginData.email, loginData.name);
         const dbPost = await service.createPost({
           ...data,
-          userId: userData.$id,
-          name: userData.name,
-          userEmail: userData.email,
+          userId: loginData.$id,
+          name: loginData.name,
+          userEmail: loginData.email
         });
-        console.log(userData);
         console.log(dbPost);
 
         if (dbPost) {

@@ -15,14 +15,14 @@ const Login = () => {
     setError("");
     try {
       const session = await authService.login(data);
-      console.log(session);
+      // console.log(session);
       if (session) {
         const userData = await authService.getCurrentUser();
         // console.log(await authService.getCurrentUser());
         if (userData) {
           // console.log(userData);
           // console.log(dispatch(authLogin(userData)));
-          dispatch(authLogin(userData));
+          dispatch(authLogin({ ...userData }));
         }
         navigate("/");
       }
