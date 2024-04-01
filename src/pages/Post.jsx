@@ -4,6 +4,9 @@ import service from "../appwrite/config";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+import { Toaster } from "react-hot-toast";
+import Comments from "../components/comments/Comments";
+import AllComments from "../components/comments/AllComments";
 
 const Post = () => {
   const [post, setPost] = useState(null);
@@ -17,6 +20,7 @@ const Post = () => {
   useEffect(() => {
     if (slug) {
       service.getPost(slug).then((post) => {
+        console.log(post);
         if (post) setPost(post);
         else navigate("/");
       });
@@ -33,6 +37,7 @@ const Post = () => {
   };
   return post ? (
     <div className="py-8 flex flex-col items-center">
+      <div><Toaster /></div>
 
       <div className="w-full flex justify-center items-center mb-4 relative flex-col border rounded-xl p-2">
         <div className="px-32">
@@ -57,10 +62,21 @@ const Post = () => {
         )}
       </div>
       <div className=" flex items-center mb-6 flex-col gap-6 w-[1200px]">
-        <h1 className="text-3xl font-bold">{post.title}</h1>
+        <h1 className="text-8xl font-bold">{post.title}</h1>
+        <div className="w-full mt-6">
+          <div className="p-1 text-2xl">
+            <h2>{post.name}</h2>
+            <h2>{`@${post.userEmail.split('@')[0]}`}</h2>
+          </div>
+        </div>
         <p className="text-2xl ">{parse(post.content)}</p>
       </div>
-
+      <div className="w-[80%]">
+        <h2 className="pl-40 text-3xl mb-4">Comments :</h2>
+        <hr className="mt-2 mb-5 border-gray-950" />
+        <Comments post={post} slug={slug} />
+        <AllComments post={post} />
+      </div>
     </div>
   ) : null;
 };

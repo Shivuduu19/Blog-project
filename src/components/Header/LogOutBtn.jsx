@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import authService from "../../appwrite/auth";
 import { logout } from "../../store/authSlice";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const LogOutBtn = () => {
   const disPatch = useDispatch();
@@ -12,6 +13,7 @@ const LogOutBtn = () => {
       .logout()
       .then(() => {
         disPatch(logout());
+        toast.success("log out successfull")
         navigate("/");
       })
       .catch((err) => console.log(err));

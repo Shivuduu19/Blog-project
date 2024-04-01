@@ -1,30 +1,31 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useNavigation } from "react-router-dom";
 import authService from "../appwrite/auth";
 import { login as authLogin } from "../store/authSlice";
 import { Button, Logo, Input } from "./index";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  // const navigation = useNavigation()
+
   const { register, handleSubmit } = useForm();
   const login = async (data) => {
     setError("");
     try {
       const session = await authService.login(data);
-      // console.log(session);
       if (session) {
         const userData = await authService.getCurrentUser();
-        // console.log(await authService.getCurrentUser());
         if (userData) {
-          // console.log(userData);
-          // console.log(dispatch(authLogin(userData)));
           dispatch(authLogin({ ...userData }));
         }
-        navigate("/");
+        toast.success("login successfull")
+        navigate(-1);
       }
     } catch (error) {
       setError(error.message);

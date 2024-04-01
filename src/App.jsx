@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { login, logout } from "./store/authSlice";
 import { Footer, Header } from "./components";
 import { Outlet } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -28,6 +29,7 @@ function App() {
     <div className=" flex min-h-screen bg-gray-700">
       <div className=" w-full block">
         <Header />
+        <Toaster position="top-right" />
         <main className="">
           <Outlet />
         </main>

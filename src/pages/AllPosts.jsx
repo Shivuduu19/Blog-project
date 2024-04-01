@@ -9,6 +9,7 @@ const AllPosts = () => {
   // console.log(userData);
   // service.getPosts([]).then((p) => console.log(p));
   useEffect(() => {
+    // console.log("shiva");
     service.getPosts([]).then((posts) => {
       if (posts) {
         // console.log(posts.documents);

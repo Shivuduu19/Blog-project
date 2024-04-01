@@ -7,6 +7,7 @@ import RTE from "../RTE";
 import Select from "../Select";
 import Button from "../Button";
 import service from "../../appwrite/config";
+import toast, { Toaster } from "react-hot-toast";
 
 const PostForm = ({ post }) => {
   // const [post, setPost] = useState(null)
@@ -23,9 +24,12 @@ const PostForm = ({ post }) => {
     });
   const navigate = useNavigate();
   const loginData = useSelector((state) => state.auth.userData);
-  console.log(loginData);
+  // console.log(loginData);
 
   const submit = async (data) => {
+    if (!post && !post) {
+      toast("fill the feilds")
+    }
     if (post) {
       const file = data.image[0]
         ? await service.uploadFile(data.image[0])
@@ -59,6 +63,7 @@ const PostForm = ({ post }) => {
         console.log(dbPost);
 
         if (dbPost) {
+          toast("post submitted")
           navigate(`/post/${dbPost.$id}`);
         }
       }
@@ -135,6 +140,10 @@ const PostForm = ({ post }) => {
           className="mb-4"
           {...register("status", { required: true })}
         />
+        <div>
+          <Toaster
+            position="top-right" />
+        </div>
         <Button
           type="submit"
           bgColor={post ? "bg-green-500" : undefined}
