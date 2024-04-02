@@ -23,8 +23,8 @@ const PostForm = ({ post }) => {
       },
     });
   const navigate = useNavigate();
-  const loginData = useSelector((state) => state.auth.userData);
-  // console.log(loginData);
+  const loginData = useSelector((state) => state.auth.userData.userData);
+  console.log(loginData);
 
   const submit = async (data) => {
     if (!post && !post) {

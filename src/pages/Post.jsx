@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import Comments from "../components/comments/Comments";
 import AllComments from "../components/comments/AllComments";
+import Like from "../components/Like";
 
 const Post = () => {
   const [post, setPost] = useState(null);
@@ -16,11 +17,11 @@ const Post = () => {
   const loginData = useSelector((state) => state.auth.userData);
 
   const isAuthor = post && loginData ? post.userId === loginData.$id : false;
-
+  console.log(post);
   useEffect(() => {
     if (slug) {
       service.getPost(slug).then((post) => {
-        console.log(post);
+        // console.log(post);
         if (post) setPost(post);
         else navigate("/");
       });
@@ -63,19 +64,24 @@ const Post = () => {
       </div>
       <div className=" flex items-center mb-6 flex-col gap-6 w-[1200px]">
         <h1 className="text-8xl font-bold">{post.title}</h1>
-        <div className="w-full mt-6">
+        <div className="w-full flex mt-6 justify-between items-center">
           <div className="p-1 text-2xl">
             <h2>{post.name}</h2>
             <h2>{`@${post.userEmail.split('@')[0]}`}</h2>
           </div>
+          <div>{new Date(post.$createdAt).toDateString()}</div>
         </div>
         <p className="text-2xl ">{parse(post.content)}</p>
       </div>
       <div className="w-[80%]">
-        <h2 className="pl-40 text-3xl mb-4">Comments :</h2>
+        <div className="flex justify-between">
+
+          <h2 className="pl-40 text-3xl mb-4">Comments :</h2>
+          <h2><Like post={post} slug={slug} /></h2>
+        </div>
         <hr className="mt-2 mb-5 border-gray-950" />
         <Comments post={post} slug={slug} />
-        <AllComments post={post} />
+        {/* <AllComments post={post} /> */}
       </div>
     </div>
   ) : null;

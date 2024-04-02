@@ -1,12 +1,15 @@
 import React from 'react'
 
-const AllComments = ({ post }) => {
+const AllComments = ({ comments }) => {
+    console.log(comments);
+
     return (
         <div className=' flex flex-col gap-4 justify-center items-center text-start mt-5 w-full ' >
-            {post.comments.map((comment) => (
+            {comments.map((comment) => (
                 <div className='text-2xl w-[60%]'>
-                    <h2 className='text-3xl font-bold'>{post.name}</h2>
-                    <p>{comment}</p>
+                    <h2 className='text-3xl font-bold mt-2'>{comment.name}</h2>
+                    <p>{(new Date(comment.date).toLocaleDateString())}</p>
+                    <p>{comment.comment}</p>
                 </div>))}
         </div>
     )
