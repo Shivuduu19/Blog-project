@@ -9,7 +9,7 @@ const Comments = ({ post, slug }) => {
     const updateState = (d) => {
         setComments(d)
     }
-    console.log(comments);
+    // console.log(comments);
 
     return (
         <div>

@@ -77,6 +77,44 @@ export class Service {
     }
   }
 
+  // async getLikes() {
+
+  //   try {
+  //     return await this.databases.getDocument(
+  //       conf.appwriteDataBaseId,
+  //       conf.appwriteLikesCollectionId,
+  //       "likes"
+  //     );
+  //   } catch (error) {
+  //     console.log("Appwrite services :: getPost :: error".error);
+  //   }
+  // }
+
+  // async updateLikes({ likes }) {
+  //   try {
+  //     return await this.databases.updateDocument(
+  //       conf.appwriteDataBaseId,
+  //       conf.appwriteCollectionId,
+  //       "likes",
+  //       { likes }
+  //     );
+  //   } catch (error) {
+  //     console.log("Appwrite services::updatePost::error", error);
+  //   }
+  // }
+
+  // async getPostsById(queries = [Query.equal("userId", [id])]) {
+  //   try {
+  //     return await this.databases.listDocuments(
+  //       conf.appwriteDataBaseId,
+  //       conf.appwriteCollectionId,
+  //       queries
+  //     );
+  //   } catch (error) {
+  //     console.log("Appwrite serices::getPosts::eroor", error);
+  //   }
+  // }
+
   async getPosts(queries = [Query.equal("status", ["active"])]) {
     try {
       return await this.databases.listDocuments(

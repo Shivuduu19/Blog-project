@@ -17,7 +17,7 @@ const Post = () => {
   const loginData = useSelector((state) => state.auth.userData);
 
   const isAuthor = post && loginData ? post.userId === loginData.$id : false;
-  console.log(post);
+  // console.log(post);
   useEffect(() => {
     if (slug) {
       service.getPost(slug).then((post) => {

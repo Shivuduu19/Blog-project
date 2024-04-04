@@ -5,10 +5,10 @@ import toast from 'react-hot-toast'
 
 const CommentsField = ({ action, post, slug, updateState }) => {
   const [comment, setComment] = useState("")
-  const data = useSelector((state) => state.auth.userData)
-  console.log(data);
+  const data = useSelector((state) => state.auth.userData.userData)
+  // console.log(data);
   const { title, content, featuredImage, status, comments } = post
-  console.log(comments);
+  // console.log(comments);
 
   const commentData = { comment, name: data?.name, date: new Date() }
 
@@ -16,7 +16,7 @@ const CommentsField = ({ action, post, slug, updateState }) => {
     try {
       console.log("shiva");
       comments.push(JSON.stringify(commentData))
-      const updatePost = await service.updatePost(slug, { title, content, featuredImage, status, comments })
+      const updatePost = await service.updatePost(slug, { comments })
       console.log(updatePost);
       const updatedComments = (updatePost.comments.map((d) => JSON.parse(d)))
       toast("comment added")

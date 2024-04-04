@@ -25,7 +25,7 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt, name, userEm
           </div>
           <h2 className="text-4xl font-bold m-0 text-start">{title}</h2>
           {/* {console.log(parse(content).props.children)} */}
-          <p className="text-2xl w-full line-clamp-2">{parse(content).props.children}</p>
+          <p className="text-2xl w-full line-clamp-2">{parse(content)}</p>
         </div>
         <div className="h-36  justify-center mb-4">
           <img
