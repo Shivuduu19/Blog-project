@@ -9,10 +9,16 @@ import Button from "../Button";
 import service from "../../appwrite/config";
 import toast, { Toaster } from "react-hot-toast";
 
-const PostForm = ({ post }) => {
-  // const [post, setPost] = useState(null)
 
-  // useEffect(() => setPost(postValue), [post])
+const PostForm = ({ post }) => {
+  const navigate = useNavigate();
+  const loginData = useSelector((state) => state.auth.userData);
+  if (!loginData) {
+    navigate("/login")
+  }
+
+
+
   const { register, handleSubmit, watch, control, getValues, setValue } =
     useForm({
       defaultValues: {
@@ -22,8 +28,6 @@ const PostForm = ({ post }) => {
         status: post?.status || "active",
       },
     });
-  const navigate = useNavigate();
-  const loginData = useSelector((state) => state.auth.userData);
   // console.log(loginData);
 
   const submit = async (data) => {
@@ -63,7 +67,7 @@ const PostForm = ({ post }) => {
         console.log(dbPost);
 
         if (dbPost) {
-          toast("post submitted")
+          toast.success("post submitted")
           navigate(`/post/${dbPost.$id}`);
         }
       }

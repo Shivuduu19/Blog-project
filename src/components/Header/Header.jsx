@@ -8,11 +8,11 @@ function Header() {
   const navigate = useNavigate();
 
   const navItems = [
-    {
-      name: "Write",
-      slug: "/add-post",
-      active: !authStatus
-    },
+    // {
+    //   name: "Write",
+    //   slug: "/add-post",
+    //   active: !authStatus
+    // },
     {
       name: "Login",
       slug: "/login",
@@ -34,6 +34,7 @@ function Header() {
             </Link>
           </div>
           <ul className="flex ml-auto">
+            <li key="write" className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full "><Link to="/add-post">Write</Link></li>
             {navItems.map((item) =>
               item.active ? (
                 <li key={item.name}>
@@ -47,6 +48,7 @@ function Header() {
               ) : null
             )}
             {authStatus && (
+
               <li>
                 <LogOutBtn />
               </li>

@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState("")
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,6 +18,7 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
   const login = async (data) => {
     setError("");
+    setLoading("Loading")
     try {
       const session = await authService.login(data);
       if (session) {
@@ -39,7 +41,7 @@ const Login = () => {
       >
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
-            <Logo width="100%" />
+            {loading}
           </span>
         </div>
         <h2 className="text-center text-2xl font-bold leading-tight">

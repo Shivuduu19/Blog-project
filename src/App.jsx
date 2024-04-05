@@ -33,7 +33,6 @@ function App() {
         <main className="">
           <Outlet />
         </main>
-        {/* <Footer /> */}
       </div>
     </div>
   ) : null;
