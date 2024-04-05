@@ -9,6 +9,11 @@ function Header() {
 
   const navItems = [
     {
+      name: "Write",
+      slug: "/add-post",
+      active: !authStatus
+    },
+    {
       name: "Login",
       slug: "/login",
       active: !authStatus,
@@ -17,11 +22,6 @@ function Header() {
       name: "Signup",
       slug: "/signup",
       active: !authStatus,
-    },
-    {
-      name: "Add Post",
-      slug: "/add-post",
-      active: authStatus,
     },
   ];
   return (

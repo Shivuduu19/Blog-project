@@ -3,15 +3,17 @@ import { BiSolidLike } from "react-icons/bi";
 import { BiLike } from "react-icons/bi";
 import service from '../appwrite/config';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 const Like = ({ post, slug }) => {
     const { likes } = post
     const [like, setLike] = useState(false)
+    const navigate = useNavigate()
     const userData = useSelector((state) => state.auth.userData)
     console.log(userData);
     // console.log(likes);
     let parsedLikes = likes.map(d => JSON.parse(d))
     console.log(parsedLikes);
-    let currentUserStatus = parsedLikes.filter(d => d.Id === userData.$id)
+    let currentUserStatus = parsedLikes.filter(d => d.Id === userData?.$id)
     // console.log(currentUserStatus);
     const [likeCount, setLikeCount] = useState(parsedLikes.length)
     useEffect(() => {
@@ -32,6 +34,9 @@ const Like = ({ post, slug }) => {
 
     function handleLike() {
         // console.log(like);
+        if (!userData) {
+            navigate("/login")
+        }
         setLike(like => !like)
         console.log(stringifiedLikes);
         if (currentUserStatus.length) {

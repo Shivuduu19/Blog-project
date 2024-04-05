@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import service from '../../appwrite/config'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const CommentsField = ({ action, post, slug, updateState }) => {
+  const navigate = useNavigate()
   const [comment, setComment] = useState("")
-  const data = useSelector((state) => state.auth.userData.userData)
+  const data = useSelector((state) => state.auth.userData)
   // console.log(data);
   const { title, content, featuredImage, status, comments } = post
   // console.log(comments);
@@ -14,6 +16,9 @@ const CommentsField = ({ action, post, slug, updateState }) => {
 
   const handleComment = async () => {
     try {
+      if (!data) {
+        navigate("/login")
+      }
       console.log("shiva");
       comments.push(JSON.stringify(commentData))
       const updatePost = await service.updatePost(slug, { comments })
