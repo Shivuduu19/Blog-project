@@ -6,13 +6,13 @@ import { useSelector } from 'react-redux';
 const Like = ({ post, slug }) => {
     const { likes } = post
     const [like, setLike] = useState(false)
-    const userData = useSelector((state) => state.auth.userData.userData)
-    // console.log(userData);
-    console.log(likes);
+    const userData = useSelector((state) => state.auth.userData)
+    console.log(userData);
+    // console.log(likes);
     let parsedLikes = likes.map(d => JSON.parse(d))
     console.log(parsedLikes);
     let currentUserStatus = parsedLikes.filter(d => d.Id === userData.$id)
-    console.log(currentUserStatus);
+    // console.log(currentUserStatus);
     const [likeCount, setLikeCount] = useState(parsedLikes.length)
     useEffect(() => {
         if (currentUserStatus.length === 1) {
@@ -27,7 +27,7 @@ const Like = ({ post, slug }) => {
     // console.log(parsedLikes);
     let stringifiedLikes;
     // console.log(stringifiedLikes);
-    console.log(like);
+    // console.log(like);
     // console.log(likeCount);
 
     function handleLike() {

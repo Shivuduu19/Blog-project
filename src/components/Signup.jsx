@@ -23,7 +23,7 @@ const Signup = () => {
         const userData = await authService.getCurrentUser();
         console.log(userData);
         if (userData) {
-          dispatch(login(userData));
+          dispatch(login({ ...userData }));
         }
         // const use = useSelector((state) => state.auth.userData)
         // console.log(use);
