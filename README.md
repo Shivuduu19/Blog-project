@@ -1,8 +1,20 @@
-# React + Vite
+# writeUrMind blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Live:
+[https://writeurmind.netlify.app/]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Made this using:
+
+- React
+- react-redux for state management
+- Appwite as Baas(backend)
+- react-hook-form for form handling
+- tinyMCE for text-editor
+- react-hot-toast for notifications
+- netlify for deployment
+- vite
+- styled-components for styling
+- react-router-dom for routing
+- uuid package for unique keys
+- react-icons for icons
