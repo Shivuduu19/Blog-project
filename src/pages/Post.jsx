@@ -4,7 +4,6 @@ import service from "../appwrite/config";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
-import { Toaster } from "react-hot-toast";
 import Comments from "../components/comments/Comments";
 import AllComments from "../components/comments/AllComments";
 import Like from "../components/Like";
@@ -39,7 +38,7 @@ const Post = () => {
   };
   return post ? (
     <div className="py-8 flex flex-col items-center">
-      <div><Toaster /></div>
+
 
       <div className="w-full flex justify-center items-center mb-4 relative flex-col border rounded-xl p-2">
         <div className="px-32">
