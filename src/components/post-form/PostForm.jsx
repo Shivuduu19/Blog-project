@@ -31,7 +31,7 @@ const PostForm = ({ post }) => {
   // console.log(loginData);
 
   const submit = async (data) => {
-    if (!post && !post) {
+    if (!post) {
       toast("fill the feilds")
     }
     if (post) {
