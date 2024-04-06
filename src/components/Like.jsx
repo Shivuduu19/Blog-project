@@ -4,6 +4,7 @@ import { BiLike } from "react-icons/bi";
 import service from '../appwrite/config';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 const Like = ({ post, slug }) => {
     const { likes } = post
     const [like, setLike] = useState(false)
@@ -35,6 +36,7 @@ const Like = ({ post, slug }) => {
 
             setLikeCount(likeCount + 1)
             parsedLikes.push({ like: !like, Id: userData.$id })
+            toast.success("liked")
             stringifiedLikes = parsedLikes.map(d => JSON.stringify(d))
 
             updateCount()
@@ -42,6 +44,7 @@ const Like = ({ post, slug }) => {
         if (like) {
             setLikeCount(likeCount - 1)
             stringifiedLikes = parsedLikes.filter((d) => d.Id !== userData.$id)
+            toast.error("unliked")
             updateCount()
         }
         async function updateCount() {
