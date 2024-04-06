@@ -4,6 +4,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import conf from "../conf/conf";
 
 const RTE = ({ name, control, label, defaultValue = "" }) => {
+  console.log(conf.tinyMce);
   return (
     <div className="w-full">
       {label && <label className="inline-block mb-1 pl-1">{label}</label>}
