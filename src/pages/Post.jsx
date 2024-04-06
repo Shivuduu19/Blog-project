@@ -33,7 +33,7 @@ const Post = () => {
     });
   };
   return post ? (
-    <div className="py-8 relative flex flex-col items-center">
+    <div className="py-8 relative flex flex-col items-center text-slate-300">
       <div className="w-full flex justify-center items-center mb-4 relative flex-col border rounded-xl p-2">
         <div className="p-5 md:px-32">
           <img
@@ -64,7 +64,7 @@ const Post = () => {
           </div>
           <div>{new Date(post.$createdAt).toDateString()}</div>
         </div>
-        <p className="text-2xl ">{parse(post.content)}</p>
+        <p className="text-2xl md:text-4xl ">{parse(post.content)}</p>
       </div>
       <div className="w-[80%]">
         <div className="flex justify-between">

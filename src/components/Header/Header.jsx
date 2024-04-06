@@ -25,7 +25,7 @@ function Header() {
     },
   ];
   return (
-    <header className="py-3 shadow bg-gray-900 h-[8rem]">
+    <header className="py-3 shadow bg-[#9fd49f] h-[8rem]">
       <Container>
         <nav className="flex flex-col md:flex-row gap-4 md:justify-between w-full">
           <div className="mr-4 text-center md:text-start">
@@ -34,7 +34,7 @@ function Header() {
             </Link>
           </div>
           <ul className="flex md:mx-auto items-center justify-center md:ml-auto">
-            <li key="write" className="inline-block px-6 md:py-2 duration-200 hover:bg-blue-100 rounded-full "><Link to="/add-post">Write</Link></li>
+            <li key="write" className="inline-block px-6 md:py-2 text-xl duration-200 hover:bg-blue-100 rounded-full "><Link to="/add-post">Write</Link></li>
             {navItems.map((item) =>
               item.active ? (
                 <li key={item.name}>

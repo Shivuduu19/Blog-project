@@ -89,7 +89,7 @@ const PostForm = ({ post }) => {
     return () => subscription.unsubscribe();
   }, [watch, slugTransform, setValue]);
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-col md:flex-wrap">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-col md:flex-row md:flex-wrap">
       <div className="w-full md:w-2/3 px-2">
         <Input
           label="Title :"

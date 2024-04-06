@@ -39,7 +39,7 @@ const CommentsField = ({ action, post, slug, updateState }) => {
   return (
     <div className='flex flex-col gap-3 justify-center items-center w-full'>
       <textarea className='mx-10 w-[80%] md:w-[60%] overflow-auto h-[140px] resize-none pl-6 pt-3 border-gray-950 border-4 bg-transparent rounded-lg text-3xl' onChange={(e) => setComment(e.target.value)} value={comment}></textarea>
-      <button className='bg-green-400 p-2 rounded-md' onClick={handleComment}>{action}</button>
+      <button className='bg-green-400 text-black p-2 rounded-md' onClick={handleComment}>{action}</button>
     </div>
   )
 }

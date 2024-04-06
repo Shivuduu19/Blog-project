@@ -10,7 +10,7 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt, name, userEm
 
   return (
     <Link to={`/post/${$id}`}>
-      <div className="w-full h-[20%] flex justify-between bg-gray-100 rounded-xl p-4 ">
+      <div className="w-full h-[20%] flex justify-between bg-[#bcad4a] rounded-xl p-4 ">
         <div className="w-2/3 flex flex-col gap-5">
           <div className="flex gap-3 items-center">
             <h1 className="text-2xl">{name}</h1>
@@ -23,7 +23,7 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt, name, userEm
           {/* {console.log(parse(content).props.children)} */}
           <p className="text-2xl w-full  line-clamp-1 md:line-clamp-2">{parse(content)}</p>
         </div>
-        <div className="h-14 md:h-36  my-auto mb-4">
+        <div className="h-17 md:h-36  my-auto mb-4">
           <img
             src={service.getFilePreview(featuredImage)}
             alt="title"
