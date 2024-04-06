@@ -22,15 +22,9 @@ const Like = ({ post, slug }) => {
             setLike(currentUserStatus[0].like)
         }
     }, [])
-    // if (currentUserStatus.length) {
-    //     setLike(currentUserStatus.likeStatus)
-    // }
-    // const [likeStatus, setLikeStatus] = useState()
-    // console.log(parsedLikes);
+
     let stringifiedLikes;
-    // console.log(stringifiedLikes);
-    // console.log(like);
-    // console.log(likeCount);
+
 
     function handleLike() {
         // console.log(like);
@@ -40,33 +34,21 @@ const Like = ({ post, slug }) => {
         setLike(like => !like)
         console.log(stringifiedLikes);
         if (currentUserStatus.length) {
-            console.log(currentUserStatus);
-            console.log(parsedLikes);
             parsedLikes = parsedLikes.filter((d) => d.Id !== userData.$id)
-            console.log(parsedLikes);
-
         }
-        console.log(stringifiedLikes);
         if (!like) {
             // console.log(like);
             setLikeCount(likeCount + 1)
             parsedLikes.push({ like: !like, Id: userData.$id })
             stringifiedLikes = parsedLikes.map(d => JSON.stringify(d))
-            // console.log(parsedLikes);
-            // console.log(stringifiedLikes);
+
             updateCount()
         }
         if (like) {
             setLikeCount(likeCount - 1)
             stringifiedLikes = parsedLikes.filter((d) => d.Id !== userData.$id)
-            // console.log(stringifiedLikes);
             updateCount()
-
-            //     setLike(true)
         }
-        // console.log(like);
-        // console.log(likeCount);
-        // setLikeCount(like ? likeCount - 1 : likeCount + 1)
         async function updateCount() {
             try {
                 // console.log("shiva");
@@ -74,7 +56,7 @@ const Like = ({ post, slug }) => {
                 const updatedPost = await service.updatePost(slug, { likes: stringifiedLikes })
                 console.log(updatedPost);
             } catch (error) {
-                console.log("updat  ecount error", error);
+                console.log("updatecount error", error);
             }
         }
     }

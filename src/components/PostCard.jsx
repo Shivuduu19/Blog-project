@@ -5,12 +5,8 @@ import parse from "html-react-parser"
 import { useSelector } from "react-redux";
 
 const PostCard = ({ $id, title, featuredImage, content, $createdAt, name, userEmail }) => {
-  // const userData = useSelector((state) => state.auth.userData);
   const userName = userEmail?.split('@')
   const date = new Date($createdAt)
-  // console.log(userName[0]);
-  // console.log(userData);
-
 
   return (
     <Link to={`/post/${$id}`}>

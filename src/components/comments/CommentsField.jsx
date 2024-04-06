@@ -10,9 +10,10 @@ const CommentsField = ({ action, post, slug, updateState }) => {
   const data = useSelector((state) => state.auth.userData)
   // console.log(data);
   const { comments } = post
-  // console.log(comments);
+  const userName = `@${data.email?.split('@')[0]}`
+  // console.log(userName);
 
-  const commentData = { comment, userName: data?.email, date: new Date() }
+  const commentData = { comment, userName, date: new Date() }
 
   const handleComment = async () => {
     try {
