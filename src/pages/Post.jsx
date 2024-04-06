@@ -14,14 +14,10 @@ const Post = () => {
   const navigate = useNavigate();
 
   const loginData = useSelector((state) => state.auth.userData);
-  // console.log(loginData);
-
   const isAuthor = post && loginData ? post.userId === loginData.$id : false;
-  // console.log(post);
   useEffect(() => {
     if (slug) {
       service.getPost(slug).then((post) => {
-        // console.log(post);
         if (post) setPost(post);
         else navigate("/");
       });
@@ -37,35 +33,32 @@ const Post = () => {
     });
   };
   return post ? (
-    <div className="py-8 flex flex-col items-center">
-
-
+    <div className="py-8 relative flex flex-col items-center">
       <div className="w-full flex justify-center items-center mb-4 relative flex-col border rounded-xl p-2">
-        <div className="px-32">
+        <div className="p-5 md:px-32">
           <img
             src={service.getFilePreview(post.featuredImage)}
             alt={post.title}
-            className="rounded-xl h-[80vh]"
+            className="rounded-xl h-[30vh] md:h-[80vh]"
           />
         </div>
-
-        {isAuthor && (
-          <div className="absolute right-6 top-6">
-            <Link to={`/edit-post/${post.$id}`}>
-              <Button bgColor="bg-green-500" className="mr-3">
-                Edit
-              </Button>
-            </Link>
-            <Button bgColor="bg-red-500" onClick={deletePost}>
-              Delete
-            </Button>
-          </div>
-        )}
       </div>
-      <div className=" flex items-center mb-6 flex-col gap-6 w-[1200px]">
-        <h1 className="text-8xl font-bold">{post.title}</h1>
-        <div className="w-full flex mt-6 justify-between items-center">
-          <div className="p-1 text-2xl">
+      {isAuthor && (
+        <div className="absolute right-2 top-2 md:right-6 md:top-6">
+          <Link to={`/edit-post/${post.$id}`}>
+            <Button bgColor="bg-green-500" className="mr-3">
+              Edit
+            </Button>
+          </Link>
+          <Button bgColor="bg-red-500" onClick={deletePost}>
+            Delete
+          </Button>
+        </div>
+      )}
+      <div className=" flex items-center mb-6 flex-col gap-6 md:w-[1200px]">
+        <h1 className=" text-4xl md:text-8xl font-bold">{post.title}</h1>
+        <div className="w-full flex flex-col items-start md:flex-row mt-6 justify-between md:items-center">
+          <div className="p-1 md:text-2xl">
             <h2>{post.name}</h2>
             <h2>{`@${post.userEmail.split('@')[0]}`}</h2>
           </div>
@@ -76,7 +69,7 @@ const Post = () => {
       <div className="w-[80%]">
         <div className="flex justify-between">
 
-          <h2 className="pl-40 text-3xl mb-4">Comments :</h2>
+          <h2 className="md:pl-40 text-xl md:text-3xl mb-4">Comments :</h2>
           <h2><Like post={post} slug={slug} /></h2>
         </div>
         <hr className="mt-2 mb-5 border-gray-950" />
