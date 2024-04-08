@@ -7,10 +7,12 @@ import { useSelector } from "react-redux";
 import Comments from "../components/comments/Comments";
 import AllComments from "../components/comments/AllComments";
 import Like from "../components/Like";
+import Loader from "../components/Loader";
 
 const Post = () => {
   const [post, setPost] = useState(null);
   const { slug } = useParams();
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
   const loginData = useSelector((state) => state.auth.userData);
@@ -18,7 +20,10 @@ const Post = () => {
   useEffect(() => {
     if (slug) {
       service.getPost(slug).then((post) => {
-        if (post) setPost(post);
+        if (post) {
+          setPost(post);
+          setLoading(true)
+        }
         else navigate("/");
       });
     } else navigate("/");
@@ -32,7 +37,7 @@ const Post = () => {
       }
     });
   };
-  return post ? (
+  return loading ? (
     <div className="py-8 relative flex flex-col items-center text-slate-300">
       <div className="w-full flex justify-center items-center mb-4 relative flex-col border rounded-xl p-2">
         <div className="p-5 md:px-32">
@@ -77,7 +82,7 @@ const Post = () => {
         {/* <AllComments post={post} /> */}
       </div>
     </div>
-  ) : null;
+  ) : <Loader />;
 };
 
 export default Post;

@@ -6,6 +6,7 @@ import { login, logout } from "./store/authSlice";
 import { Footer, Header } from "./components";
 import { Outlet } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import Loader from "./components/Loader";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -35,7 +36,7 @@ function App() {
         </main>
       </div>
     </div>
-  ) : null;
+  ) : <Loader />;
 }
 
 export default App;

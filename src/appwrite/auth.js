@@ -20,9 +20,9 @@ export class AuthService {
                 password,
                 name
             );
-            console.log(userAccount);
+            // console.log(userAccount);
             if (userAccount) {
-                console.log(userAccount);
+                // console.log(userAccount);
                 //login
                 return this.login({ email, password });
             } else {
@@ -50,10 +50,10 @@ export class AuthService {
     }
     async getCurrentUser() {
         try {
-            // console.log(this.account);
+            console.log(await this.account.get());
             return await this.account.get();
         } catch (error) {
-            console.log("getCurrentUser Error", error);
+            // console.log("getCurrentUser Error", error);
         }
         return null;
     }
