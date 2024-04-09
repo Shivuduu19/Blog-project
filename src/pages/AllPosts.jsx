@@ -7,6 +7,8 @@ import Loader from "../components/Loader";
 const AllPosts = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const orderedPosts = posts.slice().sort((a, b) => b.$createdAt.localeCompare(a.$createdAt))
+  // console.log(orderedPosts);
   useEffect(() => {
     service.getPosts([]).then((posts) => {
       if (posts) {
@@ -22,7 +24,7 @@ const AllPosts = () => {
       {!loading ?
         <div className="flex flex-wrap flex-col w-full  md:w-[75%] h-full">
           <h1 className="text-xl text-center mb-4 mt-3">for you</h1>
-          {posts.map((post) => (
+          {orderedPosts.map((post) => (
             <div key={post.$id} className="p-[2px] w-full ">
               <PostCard {...post} />
             </div>

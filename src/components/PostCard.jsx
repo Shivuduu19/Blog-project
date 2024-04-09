@@ -19,11 +19,10 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt, name, userEm
             <span className="text-5xl ">&#183;</span>
             <h1 className="inline-block">{date.getDate()} {date.toLocaleString('en-US', { month: 'short' })}</h1>
           </div>
-          <h2 className="text-4xl font-bold m-0 text-start mr-2">{title}</h2>
-          {/* {console.log(parse(content).props.children)} */}
+          <h2 className="text-4xl font-bold m-0 text-start mr-2 line-clamp-1">{title}</h2>
           <p className="text-2xl w-full  line-clamp-1 md:line-clamp-2">{parse(content)}</p>
         </div>
-        <div className="h-17 md:h-36  my-auto mb-4">
+        <div className="h-17 w-1/3 md:h-36  my-auto mb-4">
           <img
             src={service.getFilePreview(featuredImage)}
             alt="title"

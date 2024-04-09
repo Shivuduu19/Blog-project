@@ -42,15 +42,11 @@ export class AuthService {
         } catch (error) {
             console.log(error.message);
         }
-        // {
-        //     console.log(email, password);
-        //     const result = await this.account.createEmailSession(email, password);
-        //     return result;
-        // }
+
     }
     async getCurrentUser() {
         try {
-            console.log(await this.account.get());
+            // console.log(await this.account.get());
             return await this.account.get();
         } catch (error) {
             // console.log("getCurrentUser Error", error);
