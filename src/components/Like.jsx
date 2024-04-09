@@ -35,7 +35,7 @@ const Like = ({ post, slug }) => {
         if (!like) {
 
             setLikeCount(likeCount + 1)
-            parsedLikes.push({ like: !like, Id: userData.$id })
+            parsedLikes.push({ like: !like, Id: userData?.$id })
             toast.success("liked")
             stringifiedLikes = parsedLikes.map(d => JSON.stringify(d))
 
