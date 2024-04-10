@@ -14,7 +14,7 @@ Made this using:
 - react-hot-toast for notifications
 - netlify for deployment
 - vite
-- styled-components for styling
+- tailwindcss for styling
 - react-router-dom for routing
 - uuid package for unique keys
 - react-icons for icons
